@@ -1,0 +1,4 @@
+adressIP 172.20.21.11
+port 81
+identifiant admin
+motDePasse 0000

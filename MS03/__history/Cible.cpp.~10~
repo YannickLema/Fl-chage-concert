@@ -1,0 +1,39 @@
+//---------------------------------------------------------------------------
+
+#pragma hdrstop
+
+#include "Cible.h"
+#include "SNImage.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+void Cible::DetectionRondNoirEtCalculCentreCible()
+{
+	//Coordonnee coordhr, coordbr, centre;
+	//float a,b,c;
+	Charger("photocam.jpeg");
+	Pixel blanc={255,255,255};
+	Pixel noir={0,0,0};
+	/*Pixel rouge={255,0,0};
+	Pixel bleu={0,0,255};
+	Pixel vert={0,255,0};*/
+	Detourer(150,150,100,100,blanc);
+	SeuillerNoirBlanc(50);
+	Detourer(150,150,100,100,blanc);
+	/*coordhr= RechercherZone(10,10,noir);
+	Colorier(coordhr,10,10,rouge);
+	Tourner180();
+	coordbr=  RechercherZone(10,10,noir);
+	Colorier(coordbr,10,10,bleu);
+	Tourner180();
+	coordbr.ligne= 480-coordbr.ligne;
+	coordbr.colonne=640-coordbr.colonne;
+	centre.ligne=(coordhr.ligne+coordbr.ligne)/2;
+	centre.colonne=(coordhr.colonne+coordbr.colonne)/2;
+	DessinerCroix(centre,2,20,vert);
+	a= coordbr.ligne - coordhr.ligne;
+	b= coordbr.colonne - coordhr.colonne;
+	c=sqrt((a*a)+(b*b));
+	cout<<"Diametre ="<<c<<endl;*/
+	Sauvegarder("photocamseuiller.jpeg");
+	system("photocamseuiller.jpeg");
+}

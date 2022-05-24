@@ -1,0 +1,19 @@
+//---------------------------------------------------------------------------
+
+#pragma hdrstop
+#include <stdio.h>
+#include <SNClientTCP.h>
+#include <iostream>
+#include <fstream>
+#include "base64.h"
+#include "ConfigurationCamera.h"
+
+ConfigurationCamera::ConfigurationCamera(){
+	strcpy(adressIP,"0.0.0.0");
+	port=0;
+	strcpy(identifiant,"admin");
+	strcpy(motDePasse,"");
+}
+
+//---------------------------------------------------------------------------
+#pragma package(smart_init)

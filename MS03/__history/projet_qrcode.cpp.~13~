@@ -1,0 +1,100 @@
+#include <stdio.h>
+#include "SNClientTCP.h"
+#include "CameraHedenNoire.h"
+#include "ConfigurationCamera.h"
+#include <fstream>
+
+/* #include <opencv2/opencv.hpp>
+#include <opencv2/objdetect.hpp>
+#include <opencv2/imgcodecs.hpp>
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/imgproc/imgproc.hpp>*/
+#include <iostream>
+
+#pragma hdrstop
+#pragma argsused
+
+#ifdef _WIN32
+#include <tchar.h>
+#else
+  typedef char _TCHAR;
+  #define _tmain main
+#endif
+
+#include "QrCode.h"
+#include "SNImage.h"
+
+//using namespace cv;
+using namespace std;
+
+int main()
+{
+	//CameraHedenNoire cam;
+	//cam.PrendrePhoto("photocam.jpg");
+	/*ConfigurationCamera config;
+	config.AfficherConfiguration();
+	config.LireConfiguration("Config.txt");
+	config.AfficherConfiguration();*/
+	//cin.get();
+	QrCode monQrCode;
+	monQrCode.Charger("photocam0.bmp");
+	monQrCode.DetectionCarresCalibrage();
+
+	double x1, y1;
+	cout<<"Premier point? ";
+	cin>>x1>>y1;
+	double x2, y2;
+	cout<<"Deuxieme point? ";
+	cin>>x2>>y2;
+	double dist = sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+	cout<<"La distance est "<<dist<<endl;
+	double sc1 = x1 * x1 + y1 * y1;
+	double module1 = sqrt(sc1);
+	double z1 = sc1 * exp(-module1) * cos(module1);
+	cout<<"Cote de ("<<x1<<","<<y1<<") est "<<z1<<endl;
+	double sc2 = x2 * x2 + y2 * y2;
+	double module2 = sqrt(sc2);
+	double z2 = sc2 * exp(-module2) * cos(module2);
+	cout<<"Cote de ("<<x2<<","<<y2<<") est "<<z2<<endl;
+
+	/*maCible.DetectionRondNoirEtCalculCentreCible();
+	void display(Mat &im, Mat &bbox)
+	{
+	  int n = bbox.rows;
+	  for(int i = 0 ; i < n ; i++)
+	  {
+		line(im, Point2i(bbox.at<float>(i,0),bbox.at<float>(i,1)), Point2i(bbox.at<float>((i+1) % n,0), bbox.at<float>((i+1) % n,1)), Scalar(255,0,0), 3);
+	  }
+	  imshow("Result", im);
+	}
+
+	int main(int argc, char* argv[])
+	{
+	  // Read image
+	  Mat inputImage;
+	  if(argc>1)
+		inputImage = imread(argv[1]);
+	  else
+		inputImage = imread("qrcode-learnopencv.jpg");
+
+	  QRCodeDetector qrDecoder;
+
+	  Mat bbox, rectifiedImage;
+
+	  std::string data = qrDecoder.detectAndDecode(inputImage, bbox, rectifiedImage);
+	  if(data.length()>0)
+	  {
+		cout << "Decoded Data : " << data << endl;
+
+		display(inputImage, bbox);
+		rectifiedImage.convertTo(rectifiedImage, CV_8UC3);
+		imshow("Rectified QRCode", rectifiedImage);
+
+		waitKey(0);
+	  }
+	  else
+		cout << "QR Code not detected" << endl;
+	}   */
+
+	return 0;
+}
